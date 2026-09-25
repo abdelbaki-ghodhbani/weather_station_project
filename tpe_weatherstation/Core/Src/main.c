@@ -85,7 +85,7 @@ uint16_t value_buf[2];
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-int i=0;
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -132,12 +132,7 @@ int i=0;
 	   Humidity = DHT11_Data.Humidity;
 	 HAL_Delay(1000);
 
-	 if (i==0){
-		 i=1;
-	  value_buf[0]=Temperature-10 ;}
-	 if (i==1){
-		 i=0;
-	  value_buf[0]=Temperature+10 ;}
+	  value_buf[0]=Temperature ;
 	  value_buf[1]=Humidity  ;
 	  ESP_Send_Multi(THINGSPEAK_API_KEY,2,value_buf) ;
 	  HAL_Delay(15000);
