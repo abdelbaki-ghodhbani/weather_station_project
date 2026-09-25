@@ -24,6 +24,11 @@
 /* USER CODE BEGIN Includes */
 #include "dht11.h"
 #include "ESPDataLogger.h"
+
+/* Network / cloud configuration - replace with your own values */
+#define WIFI_SSID          "YOUR_WIFI_SSID"
+#define WIFI_PASSWORD      "YOUR_WIFI_PASSWORD"
+#define THINGSPEAK_API_KEY "YOUR_THINGSPEAK_WRITE_KEY"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -113,7 +118,7 @@ int i=0;
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  ESP_Init ("myphone", "fyyw3057")  ;
+  ESP_Init (WIFI_SSID, WIFI_PASSWORD)  ;
   while (1)
   {
 
@@ -134,7 +139,7 @@ int i=0;
 		 i=0;
 	  value_buf[0]=Temperature+10 ;}
 	  value_buf[1]=Humidity  ;
-	  ESP_Send_Multi("5792EMEDPV6JEKAI",2,value_buf) ;
+	  ESP_Send_Multi(THINGSPEAK_API_KEY,2,value_buf) ;
 	  HAL_Delay(15000);
   }
   /* USER CODE END 3 */
